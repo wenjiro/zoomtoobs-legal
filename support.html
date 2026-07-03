@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Support — ZoomToOBS</title>
+  <style>
+    body { font-family: "Segoe UI", system-ui, sans-serif; line-height: 1.6; max-width: 720px; margin: 2rem auto; padding: 0 1.25rem; color: #1a1a1a; }
+    h1 { font-size: 1.75rem; }
+    h2 { font-size: 1.1rem; margin-top: 1.75rem; }
+    a { color: #0b5cff; }
+    ul { padding-left: 1.25rem; }
+    .box { background: #f5f7fa; border-radius: 8px; padding: 1rem 1.25rem; margin: 1rem 0; }
+  </style>
+</head>
+<body>
+  <h1>ZoomToOBS Support</h1>
+  <p>ZoomToOBS bridges Zoom meeting video to OBS Studio via Spout on Windows.</p>
+
+  <div class="box">
+    <strong>Email support:</strong><br>
+    <a href="mailto:wenjiro@gmail.com">wenjiro@gmail.com</a>
+  </div>
+
+  <h2>Before contacting support</h2>
+  <ul>
+    <li>Check the <a href="documentation.html">documentation</a> for setup steps.</li>
+    <li>Regenerate <code>sdk_jwt</code> if authentication fails.</li>
+    <li>Ensure the meeting host approved local recording.</li>
+    <li>Install <a href="https://github.com/Off-World-Live/obs-spout2-plugin">obs-spout2-plugin</a> for OBS.</li>
+  </ul>
+
+  <h2>Common issues</h2>
+  <ul>
+    <li><strong>SDK authentication failed</strong> — regenerate JWT with your Zoom Client ID and Secret.</li>
+    <li><strong>Cannot join external meeting (error 63)</strong> — app must be approved on Zoom Marketplace.</li>
+    <li><strong>No video</strong> — host must allow local recording; select participants and click Apply.</li>
+    <li><strong>Spout not visible in OBS</strong> — install obs-spout2-plugin and run ZoomToOBS before adding sources.</li>
+  </ul>
+
+  <p><a href="documentation.html">Documentation</a> · <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Use</a></p>
+</body>
+</html>

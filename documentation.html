@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ZoomToOBS Documentation</title>
+  <style>
+    body { font-family: "Segoe UI", system-ui, sans-serif; line-height: 1.6; max-width: 720px; margin: 2rem auto; padding: 0 1.25rem; color: #1a1a1a; }
+    h1 { font-size: 1.75rem; }
+    h2 { font-size: 1.15rem; margin-top: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.35rem; }
+    h3 { font-size: 1rem; margin-top: 1.25rem; }
+    a { color: #0b5cff; }
+    ul, ol { padding-left: 1.25rem; }
+    code { background: #f1f5f9; padding: 0.1rem 0.35rem; border-radius: 4px; font-size: 0.92em; }
+    pre { background: #f1f5f9; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.9em; }
+  </style>
+</head>
+<body>
+  <h1>ZoomToOBS — User Guide</h1>
+  <p>How to set up, use, and remove ZoomToOBS with Zoom and OBS Studio on Windows.</p>
+
+  <h2>1. Adding ZoomToOBS</h2>
+
+  <h3>Requirements</h3>
+  <ul>
+    <li>Windows 10 or 11 (64-bit)</li>
+    <li>Zoom Meeting SDK app credentials (Client ID and Client Secret from Zoom Marketplace)</li>
+    <li>OBS Studio 31+ with <a href="https://github.com/Off-World-Live/obs-spout2-plugin">obs-spout2-plugin</a></li>
+  </ul>
+
+  <h3>Install</h3>
+  <ol>
+    <li>Download and extract the ZoomToOBS release ZIP to a folder on your PC.</li>
+    <li>Copy <code>config.example.json</code> to <code>config.json</code> in the same folder as <code>zoom-bridge.exe</code>.</li>
+    <li>Generate a Meeting SDK JWT:
+      <pre>python generate_jwt.py --client-id YOUR_CLIENT_ID --client-secret YOUR_CLIENT_SECRET</pre>
+    </li>
+    <li>Paste the JWT into <code>config.json</code> as <code>sdk_jwt</code>.</li>
+    <li>Run <code>zoom-bridge.exe</code>.</li>
+  </ol>
+
+  <p><strong>Note:</strong> ZoomToOBS is a standalone desktop app. End users do not install it from the Zoom Marketplace. You use your approved Zoom Meeting SDK credentials locally.</p>
+
+  <h2>2. Using ZoomToOBS</h2>
+
+  <h3>Join a meeting</h3>
+  <ol>
+    <li>Enter your <strong>Display name</strong> (shown in the meeting).</li>
+    <li>Paste a Zoom invite link, or enter Meeting ID and passcode.</li>
+    <li>Click <strong>Join meeting</strong>.</li>
+    <li>When prompted in Zoom, the <strong>host must approve local recording</strong>.</li>
+  </ol>
+
+  <h3>Configure OBS capture</h3>
+  <ol>
+    <li>After joining, select participants in <strong>Camera 1</strong>, optional <strong>Camera 2</strong>, and <strong>Screen share</strong>.</li>
+    <li>Click <strong>Apply</strong>.</li>
+    <li>In OBS, add <strong>Spout2 Capture</strong> sources:
+      <ul>
+        <li><code>ZoomToOBS_Camera</code> — webcam</li>
+        <li><code>ZoomToOBS_Camera2</code> — second camera (optional)</li>
+        <li><code>ZoomToOBS_Share</code> — screen share</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h3>Leave a meeting</h3>
+  <ol>
+    <li>Click <strong>Leave</strong> in ZoomToOBS.</li>
+    <li>Raw recording stops and Spout streams end.</li>
+  </ol>
+
+  <h2>3. Removing ZoomToOBS</h2>
+  <ol>
+    <li>Click <strong>Leave</strong> if connected to a meeting.</li>
+    <li>Close <code>zoom-bridge.exe</code>.</li>
+    <li>Delete the application folder from your computer.</li>
+    <li>Delete <code>config.json</code> (contains your JWT — do not share).</li>
+    <li>Remove Spout2 Capture sources from OBS (optional).</li>
+  </ol>
+
+  <p>No Zoom Marketplace uninstall is required — ZoomToOBS does not install as a Zoom Marketplace integration for end users.</p>
+
+  <h2>4. Troubleshooting</h2>
+  <ul>
+    <li><strong>Authentication failed</strong> — regenerate JWT; use Production credentials after app approval.</li>
+    <li><strong>Error 63 (external meeting)</strong> — Zoom app must pass Marketplace review.</li>
+    <li><strong>No video</strong> — host must approve recording; participant must have camera on.</li>
+    <li><strong>Black share</strong> — participant is not sharing screen yet.</li>
+  </ul>
+
+  <h2>5. Support</h2>
+  <p>Email: <a href="mailto:wenjiro@gmail.com">wenjiro@gmail.com</a><br>
+  <a href="support.html">Support page</a> · <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Use</a></p>
+</body>
+</html>
